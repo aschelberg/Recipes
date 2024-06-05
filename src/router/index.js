@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { getCurrentUser } from 'vuefire';
 import useUserStore from '@/stores/user.store.js';
 import HomeView from '@/views/HomeView.vue';
+import MyRecipesView from '@/views/MyRecipesView.vue';
+import ShoppingListView from '@/views/ShoppingListView.vue';
 import AboutView from '@/views/AboutView.vue';
 import LoginView from '@/views/Auth/LoginView.vue';
 import LogoutView from '@/views/Auth/LogoutView.vue';
@@ -31,6 +33,24 @@ const router = createRouter({
       component: AboutView,
       meta: {
         title: 'About',
+        mustBeAuthenticated: true,
+      }
+    },
+    {
+      path: '/myrecipes',
+      name: 'myrecipes',
+      component: MyRecipesView,
+      meta: {
+        title: 'My Recipes',
+        mustBeAuthenticated: true,
+      }
+    },
+    {
+      path: '/shoppinglist',
+      name: 'shoppinglist',
+      component: ShoppingListView,
+      meta: {
+        title: 'Shopping List',
         mustBeAuthenticated: true,
       }
     },

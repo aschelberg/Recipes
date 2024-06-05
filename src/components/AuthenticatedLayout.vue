@@ -11,39 +11,33 @@ import {
   DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
-  UsersIcon,
+  UserIcon,
+  ListBulletIcon,
   XMarkIcon,
   InformationCircleIcon
 } from '@heroicons/vue/24/outline';
 import { ChevronDownIcon, ChevronUpIcon, UserCircleIcon, ArrowRightStartOnRectangleIcon } from '@heroicons/vue/20/solid'
 
 const { user } = storeToRefs(useUserStore());
-console.log(user.value)
+const route = useRoute();
 
-const navigation = [
-  { name: 'Home', href: '/home', icon: HomeIcon, current: false },
-  { name: 'About', href: '/about', icon: InformationCircleIcon, current: false },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-]
-const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-]
+const navigation = ref([
+  { name: 'Home', href: '/home', icon: HomeIcon },
+  { name: 'Saved Recipes', href: '/myrecipes', icon: FolderIcon },
+  { name: 'Shopping List', href: '/shoppinglist', icon: ListBulletIcon },
+  // { name: 'Calendar', href: '#', icon: CalendarIcon },
+  // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon },
+  { name: 'About', href: '/about', icon: InformationCircleIcon },
+])
+// const teams = ref([
+//   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
+//   { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
+//   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+// ])
 const userNavigation = [
-  { name: 'Your profile', href: '#', icon: UserCircleIcon },
-  { name: 'Sign out', href: '/logout', icon: ArrowRightStartOnRectangleIcon },
+  { name: 'Sign out', href: '/logout' },
 ]
 const sidebarOpen = ref(false)
-const updateCurrent = (item) => {
-  navigation.forEach((i) => i.current = false);
-  const nav = navigation.some((i) => i.current === item.current)
-  nav.current = true
-}
-
 </script>
 
 <template>
@@ -76,21 +70,23 @@ const updateCurrent = (item) => {
               <!-- Sidebar component, swap this element with another sidebar if you like -->
               <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
                 <div class="flex h-16 shrink-0 items-center">
-                  <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
+                  <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=500" alt="Your Company" />
                 </div>
                 <nav class="flex flex-1 flex-col">
                   <ul role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
                       <ul role="list" class="-mx-2 space-y-1">
                         <li v-for="item in navigation" :key="item.name">
-                          <a :href="item.href" :class="[item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']" v-bind:on-click="updateCurrent(item)">
+                          <a :href="item.href" :class="[route.path === item.href ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']" :aria-current="route.path === item.href ? 'page': undefined">
                             <component :is="item.icon" class="h-6 w-6 shrink-0" aria-hidden="true" />
                             {{ item.name }}
                           </a>
                         </li>
                       </ul>
                     </li>
-                    <li>
+
+                    <!-- Save this for after all other pages and functionality is completed -->
+                    <!-- <li>
                       <div class="text-xs font-semibold leading-6 text-gray-400">Your groups</div>
                       <ul role="list" class="-mx-2 mt-2 space-y-1">
                         <li v-for="team in teams" :key="team.name">
@@ -100,7 +96,7 @@ const updateCurrent = (item) => {
                           </a>
                         </li>
                       </ul>
-                    </li>
+                    </li> -->
                   </ul>
                 </nav>
               </div>
@@ -115,21 +111,23 @@ const updateCurrent = (item) => {
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div class="flex grow flex-col gap-y-5 bg-gray-900 px-6">
         <div class="flex h-16 shrink-0 items-center">
-          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
+          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=500" alt="Your Company" />
         </div>
         <nav class="flex flex-1 flex-col">
           <ul role="list" class="flex flex-1 flex-col gap-y-7">
             <li>
               <ul role="list" class="-mx-2 space-y-1">
                 <li v-for="item in navigation" :key="item.name">
-                  <a :href="item.href" :class="[item.current ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']">
+                  <a :href="item.href" :class="[route.path === item.href ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']" :aria-current="route.path === item.href ? 'page': undefined">
                     <component :is="item.icon" class="h-6 w-6 shrink-0" aria-hidden="true" />
                     {{ item.name }}
                   </a>
                 </li>
               </ul>
             </li>
-            <li>
+
+            <!-- Save this for after all other pages and functionality is put together -->
+            <!-- <li> 
               <div class="text-xs font-semibold leading-6 text-gray-400">Your groups</div>
               <ul role="list" class="-mx-2 mt-2 space-y-1">
                 <li v-for="team in teams" :key="team.name">
@@ -139,24 +137,26 @@ const updateCurrent = (item) => {
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> -->
             <!-- Sidebar nav user menu -->
             <li class="-mx-6 mt-auto">
               <Menu as="div" class="relative hover:bg-gray-800">
                 <MenuButton class="-m-1.5 flex items-center p-1.5 ">
                   <span class="sr-only">Open user menu</span>
                   <a href="#" class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white ">
-                    <img class="h-8 w-8 rounded-full bg-indigo-700" :src="`${user.photoURL}`" alt="" />
+                    <UserIcon v-if="!user.photoURL" class="h-6 w-6 rounded-full border border-white" />
+                    <img v-else class="h-8 w-8 rounded-full bg-green-700" :src="`${user.photoURL}`"/>
                     <span class="sr-only">Your profile</span>
                     <span aria-hidden="true">{{ user.displayName }}</span>
                     <ChevronUpIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true"/>
                   </a>
                 </MenuButton>
                 <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-                  <MenuItems class="absolute offset-0 -top-20 -right-0 z-10 mt-2.5 w-32 origin-bottom-right bg-white rounded-md py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                  <MenuItems class="absolute offset-0 -top-12 right-1 z-10 mt-2.5 w-32 origin-bottom-right bg-white rounded-md py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                     <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                      <a :href="item.href" :class="[active ? 'bg-gray-200' : '', 'flex  px-3 py-1 text-sm leading-6 text-gray-900']">
+                      <a :href="item.href" :class="[active ? 'bg-gray-200' : '', 'flex  px-3 py-1 text-sm leading-6 text-gray-900', 'justify-between']">
                         <span  class="pr-1">{{ item.name }}</span>
+                        <ArrowRightStartOnRectangleIcon class="h-5 w-5"/>
                       </a>
                     </MenuItem>
                   </MenuItems>
@@ -175,9 +175,11 @@ const updateCurrent = (item) => {
       </button>
       <div class="flex-1 text-sm font-semibold leading-6 text-white">Dashboard</div>
       <Menu as="div" class="relative">
-        <MenuButton class="-m-1.5 flex items-center p-1.5">
+        <MenuButton class="-m-1.5 flex items-center p-1.5 hover:bg-gray-800 hover:rounded-md">
           <span class="sr-only">Open user menu</span>
-          <img class="h-8 w-8 rounded-full bg-gray-50" :src="`${user.photoURL}`" alt="" />
+          <UserIcon v-if="!user.photoURL" class="h-6 w-6 rounded-full text-white border border-white" />
+          <img v-else class="h-8 w-8 rounded-full bg-gray-50" :src="`${user.photoURL}`" alt="" />
+          <ChevronDownIcon class="h-6 w-6 text-white pl-2"/>
           <span class="hidden lg:flex lg:items-center">
             <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">{{ user.displayName }}</span>
             <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -186,7 +188,11 @@ const updateCurrent = (item) => {
         <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
           <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
             <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-              <a :href="item.href" :class="[active ? 'bg-gray-200' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">{{ item.name }}</a>
+              <a :href="item.href" :class="[active ? 'bg-gray-200' : '', 'flex px-3 py-1 text-sm leading-6 text-gray-900 justify-between']">
+                <span  class="pr-1">{{ item.name }}</span>
+                <ArrowRightStartOnRectangleIcon class="h-5 w-5"/>
+              </a>
+              
             </MenuItem>
           </MenuItems>
         </transition>

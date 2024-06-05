@@ -2,6 +2,7 @@
 import useUserStore from '@/stores/user.store.js';
 import { ref } from 'vue';
 import BaseInput from '@/components/Base/BaseInput.vue'
+import BaseButton from '@/components/Base/BaseButton.vue'
 
 const email = ref(null);
 const password = ref(null);
@@ -21,7 +22,7 @@ const signin = () => userStore.loginWithEmail(email.value, password.value)
 <template>
 <div class="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
+    <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=600" alt="Your Company" />
     <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
   </div>
 
@@ -36,12 +37,12 @@ const signin = () => userStore.loginWithEmail(email.value, password.value)
         <div class="flex items-center justify-end">
       
           <div class="text-sm leading-6 my-4">
-            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+            <a href="#" class="font-semibold text-green-600 hover:text-green-500">Forgot password?</a>
           </div>
         </div>
 
         <div>
-          <button type="button" @click="signin" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+          <BaseButton @click="signin" :text="'Sign in'"/>
         </div>
       </form>
 
@@ -74,7 +75,7 @@ const signin = () => userStore.loginWithEmail(email.value, password.value)
     <p class="mt-10 text-center text-sm text-gray-500">
       Don't have an account?
       {{ ' ' }}
-      <a href="/signup" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Sign Up</a>
+      <a href="/signup" class="font-semibold leading-6 text-green-600 hover:text-green-500">Sign Up</a>
     </p>
   </div>
 </div>

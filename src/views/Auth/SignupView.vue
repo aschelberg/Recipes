@@ -4,6 +4,7 @@ import useUserStore from '@/stores/user.store.js';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, email, sameAs, helpers } from '@vuelidate/validators';
 import BaseInput from '@/components/Base/BaseInput.vue'
+import BaseButton from '@/components/Base/BaseButton.vue';
 
 const userStore = useUserStore();
 
@@ -53,7 +54,7 @@ const signup = async () => {
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img
         class="mx-auto h-10 w-auto"
-        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+        src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=600"
         alt="Your Company"
       />
       <h2
@@ -66,73 +67,39 @@ const signup = async () => {
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-2">
         <BaseInput v-model="form.firstName" :label="'First Name'" type="text" />
-        <span
-          v-for="error in v$.firstName.$errors"
-          :key="error.$uid"
-          class="text-red-500"
-        >
+        <span v-for="error in v$.firstName.$errors" :key="error.$uid" class="text-red-500">
           {{ error.$message }}
         </span>
 
         <BaseInput v-model="form.lastName" :label="'Last Name'" type="text" />
-        <span
-          v-for="error in v$.lastName.$errors"
-          :key="error.$uid"
-          class="text-red-500"
-        >
+        <span v-for="error in v$.lastName.$errors" :key="error.$uid" class="text-red-500">
           {{ error.$message }}
         </span>
 
         <BaseInput v-model="form.email" :label="'Email Address'" type="email" />
-        <span
-          v-for="error in v$.email.$errors"
-          :key="error.$uid"
-          class="text-red-500"
-        >
+        <span v-for="error in v$.email.$errors" :key="error.$uid" class="text-red-500" >
           {{ error.$message }}
         </span>
 
-        <BaseInput
-          v-model="form.password"
-          :label="'Password'"
-          type="password"
-        />
-        <span
-          v-for="error in v$.password.$errors"
-          :key="error.$uid"
-          class="text-red-500"
-        >
+        <BaseInput v-model="form.password" :label="'Password'" type="password" />
+        <span v-for="error in v$.password.$errors" :key="error.$uid" class="text-red-500" >
           {{ error.$message }}
         </span>
 
-        <BaseInput
-          v-model="form.confirmPassword"
-          :label="'Confirm Password'"
-          type="password"
-        />
-        <span
-          v-for="error in v$.password.$errors"
-          :key="error.$uid"
-          class="text-red-500"
-        >
+        <BaseInput v-model="form.confirmPassword" :label="'Confirm Password'" type="password" />
+        <span v-for="error in v$.password.$errors" :key="error.$uid" class="text-red-500" >
           {{ error.$message }}
         </span>
 
         <div>
-          <button
-            type="button"
-            @click="signup"
-            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-4"
-          >
-            Create Account
-          </button>
+          <BaseButton @click="signup" :text="'Create Account'" class="mt-8"/>
         </div>
       </form>
 
       <div class="mt-10 text-center text-sm text-gray-500">
         <a
           href="/login"
-          class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+          class="font-semibold leading-6 text-green-600 hover:text-green-500"
           >Return to login</a
         >
       </div>
