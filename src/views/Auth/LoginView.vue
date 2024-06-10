@@ -42,7 +42,7 @@ const signin = () => userStore.loginWithEmail(email.value, password.value)
         </div>
 
         <div>
-          <BaseButton @click="signin" :text="'Sign in'"/>
+          <BaseButton @click="signin" :text="'Sign in'" class="rounded-md"/>
         </div>
       </form>
 

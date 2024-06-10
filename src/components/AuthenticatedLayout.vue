@@ -18,16 +18,16 @@ import {
 } from '@heroicons/vue/24/outline';
 import { ChevronDownIcon, ChevronUpIcon, UserCircleIcon, ArrowRightStartOnRectangleIcon } from '@heroicons/vue/20/solid'
 
-const { user } = storeToRefs(useUserStore());
 const route = useRoute();
+const { user } = storeToRefs(useUserStore());
 
 const navigation = ref([
-  { name: 'Home', href: '/home', icon: HomeIcon },
+  { name: 'Recipes', href: '/recipes', icon: HomeIcon },
+  { name: 'Ingredients', href: '/ingredients', icon: InformationCircleIcon },
   { name: 'Saved Recipes', href: '/myrecipes', icon: FolderIcon },
   { name: 'Shopping List', href: '/shoppinglist', icon: ListBulletIcon },
   // { name: 'Calendar', href: '#', icon: CalendarIcon },
   // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon },
-  { name: 'About', href: '/about', icon: InformationCircleIcon },
 ])
 // const teams = ref([
 //   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
@@ -85,7 +85,7 @@ const sidebarOpen = ref(false)
                       </ul>
                     </li>
 
-                    <!-- Save this for after all other pages and functionality is completed -->
+                    <!-- TEAMS - Save this for after all other pages and functionality is completed -->
                     <!-- <li>
                       <div class="text-xs font-semibold leading-6 text-gray-400">Your groups</div>
                       <ul role="list" class="-mx-2 mt-2 space-y-1">
@@ -199,10 +199,34 @@ const sidebarOpen = ref(false)
       </Menu>
     </div>
 
-    <main class="py-10 lg:pl-72">
-      <div class="px-4 sm:px-6 lg:px-8">
+    <header class="inline lg:pl-72 bg-white shadow-sm w-full">
+      <div class="lg:pl-80 px-4 sm:px-6 lg:px-8 py-2 mx-auto max-w-7xl">
+        <h1
+          class="flex justify-center py-10 text-5xl font-semibold leading-6 text-gray-600 border-b-2"
+        >
+          {{ route.meta.title !== 'Recipe View' ? route.meta.title : route.params.name.toUpperCase() }}
+        </h1>
+      </div>
+    </header>
+
+    <main class="inline lg:pl-72">
+      <div class="lg:pl-80 px-4 sm:px-6 lg:px-8 py-4">
         <slot />
       </div>
+      <!-- <footer
+        aria-labelledby="footer-heading"
+        class="absolute w-full bottom-0 border-t border-gray-200 bg-white lg:pl-72"
+      >
+        <h2 id="footer-heading" class="sr-only">Footer</h2>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="border-t border-gray-100 py-10 text-center">
+            <p class="text-sm text-gray-500">
+              &copy; 2024 Your Company, Inc. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer> -->
     </main>
+    
   </div>
 </template>

@@ -23,7 +23,7 @@ const useUserStore = defineStore('user', () => {
       updateProfile(auth.currentUser, {
         displayName: displayName
       })
-      router.push('/home');
+      router.push('/recipes');
     } catch (err) {
       console.log(err)
     }
@@ -32,7 +32,7 @@ const useUserStore = defineStore('user', () => {
     console.log(email, password)
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push('/home')
+      router.push('/recipes')
     } catch (err) {
       console.log(err)
     }
@@ -41,7 +41,7 @@ const useUserStore = defineStore('user', () => {
   const loginWithProvider = async () => {
     try {
       await signInWithPopup(authVueFire, googleAuthProvider);
-      router.push('/home');
+      router.push('/recipes');
     } catch (err) {
       console.log(err)
     }

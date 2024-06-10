@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { getCurrentUser } from 'vuefire';
 import useUserStore from '@/stores/user.store.js';
-import HomeView from '@/views/HomeView.vue';
+import RecipeView from '@/components/Reusables/RecipeView.vue';
+import RecipesView from '@/views/RecipesView.vue';
 import MyRecipesView from '@/views/MyRecipesView.vue';
 import ShoppingListView from '@/views/ShoppingListView.vue';
-import AboutView from '@/views/AboutView.vue';
+import IngredientsView from '@/views/IngredientsView.vue';
 import LoginView from '@/views/Auth/LoginView.vue';
 import LogoutView from '@/views/Auth/LogoutView.vue';
 import SignupView from '@/views/Auth/SignupView.vue';
@@ -15,24 +16,33 @@ const router = createRouter({
     {
       path: '/',
       redirect:{
-        name: 'home'
+        name: 'recipes'
       },
     },
     {
-      path: '/home',
-      name: 'home',
-      component: HomeView,
+      path: '/recipes',
+      name: 'recipes',
+      component: RecipesView,
       meta: {
-        title: 'Home',
+        title: 'Recipes',
         mustBeAuthenticated: true,
       }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: AboutView,
+      path: '/recipes/recipe/:id/:name',
+      name: 'recipe',
+      component: RecipeView,
       meta: {
-        title: 'About',
+        title: 'Recipe View',
+        mustBeAuthenticated: true,
+      }
+    },
+    {
+      path: '/ingredients',
+      name: 'ingredients',
+      component: IngredientsView,
+      meta: {
+        title: 'Ingredients',
         mustBeAuthenticated: true,
       }
     },

@@ -4,7 +4,6 @@ import { createPinia } from 'pinia';
 import { firebaseApp } from '@/services/firebase.js'
 import { VueFire, VueFireAuth } from 'vuefire';
 
-
 import App from './App.vue';
 import router from './router';
 

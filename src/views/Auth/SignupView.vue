@@ -5,6 +5,9 @@ import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, email, sameAs, helpers } from '@vuelidate/validators';
 import BaseInput from '@/components/Base/BaseInput.vue'
 import BaseButton from '@/components/Base/BaseButton.vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const userStore = useUserStore();
 
@@ -92,7 +95,7 @@ const signup = async () => {
         </span>
 
         <div>
-          <BaseButton @click="signup" :text="'Create Account'" class="mt-8"/>
+          <BaseButton @click="signup" :text="'Create Account'" class="mt-8 rounded-md"/>
         </div>
       </form>
 
