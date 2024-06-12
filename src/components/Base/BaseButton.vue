@@ -15,7 +15,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <button type="button" class="w-full justify-center bg-green-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 transition-all">
+  <button class="w-full justify-center bg-green-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:text-gray-500 disabled:bg-gray-200 disabled:border-none transition-all">
     {{ text }}
   </button>
 </template>

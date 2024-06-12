@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { getCurrentUser } from 'vuefire';
 import useUserStore from '@/stores/user.store.js';
-import RecipeView from '@/components/Reusables/RecipeView.vue';
+import RecipeOverview from '@/components/Reusables/RecipeOverview.vue';
 import RecipesView from '@/views/RecipesView.vue';
 import MyRecipesView from '@/views/MyRecipesView.vue';
 import ShoppingListView from '@/views/ShoppingListView.vue';
@@ -31,7 +31,7 @@ const router = createRouter({
     {
       path: '/recipes/recipe/:id/:name',
       name: 'recipe',
-      component: RecipeView,
+      component: RecipeOverview,
       meta: {
         title: 'Recipe View',
         mustBeAuthenticated: true,

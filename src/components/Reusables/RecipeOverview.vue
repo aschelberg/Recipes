@@ -3,10 +3,7 @@ import { useRoute } from 'vue-router';
 import { ref } from 'vue';
 import useRecipe from '@/composables/useRecipe.js';
 import BaseButton from '@/components/Base/BaseButton.vue';
-import {
-  PlusIcon,
-  CheckIcon
-} from '@heroicons/vue/24/outline';
+import IngredientsCard from '@/components/Reusables/IngredientsCard.vue';
 
 const route = useRoute();
 const recipe = ref(null);
@@ -54,22 +51,8 @@ instructions.value.push(recipe.value.strInstructions.split('\r\n'));
           <BaseButton v-else :text="'Saves'" class="rounded-md mb-2"/>
         </div>
       </div>
-      <div class="grid grid-cols-2 px-10 mt-4">
-        <div class="text-sm">
-          <div v-for="item in measures" class="py-1 px-2">
-            <span v-show="item">{{ item }}</span>
-          </div>
-        </div>
-        <div class="text-sm">
-          <div v-for="item in ingredients" class="flex justify-between py-1 px-2">
-            <div>{{ item }}</div>
-            <div class="rounded-full p-1 hover:bg-gray-300 cursor-pointer hover:transition-all">
-              <PlusIcon class="h-3 w-3" />
-              <!-- <CheckIcon class="h-3 w-3"/> -->
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      <IngredientsCard :ingredients="ingredients" :measures="measures" />
     </div>
 
     
