@@ -37,6 +37,7 @@ const navigation = ref([
 const userNavigation = [
   { name: 'Sign out', href: '/logout' },
 ]
+
 const sidebarOpen = ref(false)
 </script>
 
