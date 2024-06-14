@@ -1,5 +1,8 @@
 <script setup>
-import BaseFavorite from '@/components/Base/BaseFavorite.vue';
+import BaseButton from '@/components/Base/BaseButton.vue';
+import useFirestore from '@/composables/useFirestore';
+import { ref } from 'vue';
+import { useCurrentUser } from 'vuefire';
 
 const props = defineProps({
   label: {
@@ -12,6 +15,27 @@ const props = defineProps({
     type: String
   }
 })
+
+const currentUser = useCurrentUser();
+const fbDoc = ref('');
+
+const { getDocId, addToRecipes, removeFromRecipes } = useFirestore("savedRecipes");
+const getDoc = async () => {
+  fbDoc.value = await getDocId(currentUser.value.uid, props.id);
+}
+getDoc()
+
+const addRecipe = async () => {
+  if(!fbDoc.value) {
+    await addToRecipes(recipe.value.idMeal, recipe.value.strMealThumb, recipe.value.strMeal);
+  }
+  getDoc()
+}
+
+const removeRecipe = async () => {
+  await removeFromRecipes(fbDoc.value)
+  getDoc()
+}
 
 </script>
 
@@ -26,7 +50,12 @@ const props = defineProps({
             {{ label.toUpperCase() }}
           </div>
         </RouterLink>
-        <BaseFavorite class="justify-end rounded-br-md"/>
+        <form @submit.prevent="addRecipe" v-if="!fbDoc">
+          <BaseButton :text="'Save'" class="flex rounded-br-md"/>
+        </form>
+        <form v-else @submit.prevent="removeRecipe">
+          <BaseButton :text="'Saved'" class="flex rounded-br-md"/>
+        </form>
       </div>
     </div>
 </template>

@@ -6,22 +6,30 @@ const props = defineProps({
   measures: Array,
 })
 
+const newList = []
+
+for(let i = 0; i < props.measures.length; i++) {
+  if(props.measures[i] !== null && props.ingredients[i] !== null) {
+    newList.push({
+    measure: props.measures[i],
+    ingredient: props.ingredients[i]
+  })}
+}
+
 </script>
 
 <template>
   <div>
-    <div class="grid grid-cols-2 px-10 mt-4">
-        <div class="text-sm">
-          <div v-for="item in measures" class="py-1 px-2">
-            <span v-show="item">{{ item }}</span>
-          </div>
-        </div>
-        <div class="text-sm">
-          <div v-for="item in ingredients">
-            <IngredientPill :name="item"/>
-          </div>
-        </div>
-      </div>
+    <table class="min-w-full divide-y divide-gray-100">
+      <tbody class="divide-y divide-gray-200">
+        <tr v-for="item in newList">
+          <td class="grid grid-cols-2 px-2 py-2 text-sm text-gray-900">
+            <span class="my-auto col-span-1">{{ item.measure }}</span>
+            <IngredientPill :name="item.ingredient"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 

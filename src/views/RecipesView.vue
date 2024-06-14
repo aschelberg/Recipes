@@ -47,7 +47,7 @@ const handleRandom = async () => {
     <BaseButton :text="'Generate Random Recipe'" @click="handleRandom" class="rounded-md mt-2 mb-4"/>
     <br class="pb-4">
     <!-- The Recipe tiles below -->
-    <div class="grid grid-cols-2 gap-5">
+    <div class="grid md:grid-cols-2 gap-5">
       <div v-for="item in recipes">
        <RecipeCard
         :id="item.idMeal"

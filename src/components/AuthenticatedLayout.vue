@@ -20,9 +20,9 @@ const { user } = storeToRefs(useUserStore());
 
 const navigation = ref([
   { name: 'Recipes', href: '/recipes', icon: HomeIcon },
-  { name: 'Ingredients', href: '/ingredients', icon: InformationCircleIcon },
   { name: 'Saved Recipes', href: '/myrecipes', icon: FolderIcon },
   { name: 'Shopping List', href: '/shoppinglist', icon: ListBulletIcon },
+  { name: 'Ingredients', href: '/ingredients', icon: InformationCircleIcon },
   // { name: 'Calendar', href: '#', icon: CalendarIcon },
   // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon },
 ])
@@ -200,7 +200,7 @@ const sidebarOpen = ref(false)
     <header class="inline lg:pl-72 bg-white shadow-sm w-full">
       <div class="lg:pl-80 px-4 sm:px-6 lg:px-8 py-2 mx-auto max-w-7xl">
         <h1
-          class="flex justify-center py-10 text-5xl font-semibold leading-6 text-gray-600 border-b-2"
+          class="flex justify-center py-10 text-3xl font-semibold leading-6 text-gray-600 border-b-2"
         >
           {{ route.meta.title !== 'Recipe View' ? route.meta.title : route.params.name.toUpperCase() }}
         </h1>
@@ -208,7 +208,7 @@ const sidebarOpen = ref(false)
     </header>
 
     <main class="inline lg:pl-72">
-      <div class="lg:pl-80 px-4 sm:px-6 lg:px-8 py-4">
+      <div class="lg:pl-80 px-6 sm:px-6 lg:px-8 py-4">
         <slot />
       </div>
       <!-- <footer

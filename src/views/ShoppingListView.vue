@@ -8,7 +8,7 @@ const itemText = ref('');
 const fbDocId = ref('');
 const itemList = ref([]);
 
-const { getAllDocs, getDocId, addShoppingItem, removeShoppingItem } = useFirestore();
+const { getAllDocs, getDocId, addShoppingItem, removeShoppingItem } = useFirestore('users');
 
 fbDocId.value = await getDocId()
 
@@ -24,6 +24,7 @@ const removeItem = async (text) => {
   await removeShoppingItem(text, fbDocId.value);
   fetchAllDocs();
 };
+console.log(fbDocId.value)
 
 </script>
 
