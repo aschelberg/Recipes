@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDTVe4kqm0u0i9V7Y8Xn1xQaRXhPWduH3k',
-  authDomain: 'recipes-14c7a.firebaseapp.com',
-  projectId: 'recipes-14c7a',
-  storageBucket: 'recipes-14c7a.appspot.com',
-  messagingSenderId: '10943970744',
-  appId: '1:10943970744:web:bf935b9f781b7b74ef634d'
+  apiKey: import.meta.env.VITE_FB_API_KEY,
+  authDomain: `${import.meta.env.VITE_FB_AUTH_DOMAIN}.firebaseapp.com`,
+  projectId: import.meta.env.VITE_FB_PROJ_ID,
+  storageBucket: `${import.meta.env.VITE_FB_STORAGE_BUCKET}.appspot.com`,
+  messagingSenderId: import.meta.env.VITE_FB_MESSAGE_SENDER_ID,
+  appId: import.meta.env.VITE_FB_APP_ID
 }
 
 const firebaseApp = initializeApp(firebaseConfig);
