@@ -152,10 +152,10 @@ const sidebarOpen = ref(false)
                 <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
                   <MenuItems class="absolute offset-0 -top-12 right-1 z-10 mt-2.5 w-32 origin-bottom-right bg-white rounded-md py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                     <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                      <a :href="item.href" :class="[active ? 'bg-gray-200' : '', 'flex  px-3 py-1 text-sm leading-6 text-gray-900', 'justify-between']">
+                      <RouterLink :to="item.href" :class="[active ? 'bg-gray-200' : '', 'flex  px-3 py-1 text-sm leading-6 text-gray-900', 'justify-between']">
                         <span  class="pr-1">{{ item.name }}</span>
                         <ArrowRightStartOnRectangleIcon class="h-5 w-5"/>
-                      </a>
+                      </RouterLink>
                     </MenuItem>
                   </MenuItems>
                 </transition>
@@ -186,10 +186,10 @@ const sidebarOpen = ref(false)
         <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
           <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
             <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-              <a :href="item.href" :class="[active ? 'bg-gray-200' : '', 'flex px-3 py-1 text-sm leading-6 text-gray-900 justify-between']">
+              <RouterLink :to="item.href" :class="[active ? 'bg-gray-200' : '', 'flex px-3 py-1 text-sm leading-6 text-gray-900 justify-between']">
                 <span  class="pr-1">{{ item.name }}</span>
                 <ArrowRightStartOnRectangleIcon class="h-5 w-5"/>
-              </a>
+              </RouterLink>
               
             </MenuItem>
           </MenuItems>
