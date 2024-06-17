@@ -3,14 +3,16 @@ import { ref } from 'vue';
 import useFirestore from '@/composables/useFirestore.js';
 import AddItem from '@/components/AddItem.vue';
 import ItemCard from '@/components/Reusables/ItemCard.vue';
+import { useCurrentUser } from 'vuefire';
 
+const user = useCurrentUser();
 const itemText = ref('');
 const fbDocId = ref('');
 const itemList = ref([]);
 
 const { getAllDocs, getDocId, addShoppingItem, removeShoppingItem } = useFirestore('users');
 
-fbDocId.value = await getDocId()
+fbDocId.value = await getDocId(user.value.uid)
 
 const fetchAllDocs = async () => (itemList.value = await getAllDocs());
 fetchAllDocs();
@@ -24,7 +26,6 @@ const removeItem = async (text) => {
   await removeShoppingItem(text, fbDocId.value);
   fetchAllDocs();
 };
-console.log(fbDocId.value)
 
 </script>
 
