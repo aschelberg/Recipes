@@ -90,6 +90,7 @@ const useUserStore = defineStore('user', () => {
   
   const logout = async () => {
     await signOut(authVueFire);
+    router.push('/login')
   }
 
   return {
