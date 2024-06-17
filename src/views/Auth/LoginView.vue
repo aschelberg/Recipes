@@ -75,7 +75,7 @@ const signin = () => userStore.loginWithEmail(email.value, password.value)
     <p class="mt-10 text-center text-sm text-gray-500">
       Don't have an account?
       {{ ' ' }}
-      <a href="/signup" class="font-semibold leading-6 text-green-600 hover:text-green-500">Sign Up</a>
+      <RouterLink :to="'/signup'" class="font-semibold leading-6 text-green-600 hover:text-green-500">Sign up</RouterLink>
     </p>
   </div>
 </div>

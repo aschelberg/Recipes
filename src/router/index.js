@@ -29,15 +29,6 @@ const router = createRouter({
       }
     },
     {
-      path: '/recipes/recipe/:id/:name',
-      name: 'recipe',
-      component: RecipeOverview,
-      meta: {
-        title: 'Recipe View',
-        mustBeAuthenticated: true,
-      }
-    },
-    {
       path: '/ingredients',
       name: 'ingredients',
       component: IngredientsView,
@@ -52,6 +43,15 @@ const router = createRouter({
       component: MyRecipesView,
       meta: {
         title: 'My Recipes',
+        mustBeAuthenticated: true,
+      }
+    },
+    {
+      path: '/recipes/recipe/:id/:name',
+      name: 'recipe',
+      component: RecipeOverview,
+      meta: {
+        title: 'Recipe View',
         mustBeAuthenticated: true,
       }
     },

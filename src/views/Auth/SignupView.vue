@@ -100,11 +100,11 @@ const signup = async () => {
       </form>
 
       <div class="mt-10 text-center text-sm text-gray-500">
-        <a
-          href="/login"
+        
+        <RouterLink
+          :to="'/login'"
           class="font-semibold leading-6 text-green-600 hover:text-green-500"
-          >Return to login</a
-        >
+          >Return to login </RouterLink>
       </div>
     </div>
   </div>
