@@ -27,7 +27,7 @@ getDoc()
 
 const addRecipe = async () => {
   if(!fbDoc.value) {
-    await addToRecipes(recipe.value.idMeal, recipe.value.strMealThumb, recipe.value.strMeal);
+    await addToRecipes(props.id, props.photo, props.label);
   }
   getDoc()
 }
