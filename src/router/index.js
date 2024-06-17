@@ -6,9 +6,9 @@ import RecipesView from '@/views/RecipesView.vue';
 import MyRecipesView from '@/views/MyRecipesView.vue';
 import ShoppingListView from '@/views/ShoppingListView.vue';
 import IngredientsView from '@/views/IngredientsView.vue';
-import LoginView from '@/views/Auth/LoginView.vue';
-import LogoutView from '@/views/Auth/LogoutView.vue';
-import SignupView from '@/views/Auth/SignupView.vue';
+import LoginView from '@/views/LoginView.vue';
+import LogoutView from '@/views/LogoutView.vue';
+import SignupView from '@/views/SignupView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
