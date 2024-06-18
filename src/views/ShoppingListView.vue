@@ -38,7 +38,7 @@ const removeItem = async (text) => {
         <span class="pl-1"> is already in the list</span>
       </div> -->
     </div>
-    <div><span>Number of items: </span>{{ itemList.length }}</div>
+    <div class="mb-4"><span>Number of items: </span>{{ itemList.length }}</div>
     <div>
       <div v-for="item in itemList">
         <ItemCard :listItem="item" @removeItem="removeItem" />
