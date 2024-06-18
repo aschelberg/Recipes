@@ -69,5 +69,8 @@ const { isAuthenticated } = storeToRefs(userStore);
 </template>
 
 <style scoped>
-
+* {
+  font-family: "PT Sans", sans-serif;
+  font-style: normal;
+}
 </style>
