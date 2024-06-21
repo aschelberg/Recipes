@@ -57,7 +57,7 @@ const signup = async () => {
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img
         class="mx-auto h-10 w-auto"
-        src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=600"
+        src="@/assets/restaurant.png"
         alt="Your Company"
       />
       <h2
